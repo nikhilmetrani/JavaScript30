@@ -18,28 +18,65 @@
     }
 
     // Regular
+    console.log('regular');
 
     // Interpolated
+    console.log('%s', 'interpolated');
 
     // Styled
+    console.log('%cStyled',
+    'font-size: 1.2em; color: crimson; background: yellow; text-shadow: 1px 1px 0 blue');
 
     // warning!
+    console.warn('Warning');
 
     // Error :|
+    console.error('Error!');
 
     // Info
+    console.info('Info');
 
     // Testing
+    const p = document.querySelector('p');
+    console.assert(p.classList.contains('gold'), 'Wrong! NO gold here');
+    console.assert(1 === 3, 'Wrong! 1 is not 3');
 
     // clearing
+    console.clear();
 
     // Viewing DOM Elements
+    console.log(p);
+    console.dir(p);
 
     // Grouping together
+    let group = 'group';
+    dogs.forEach(dog => {
+      console[group](`${dog.name}`);
+      console.log(`This is ${dog.name}`);
+      console.log(`${dog.name} is ${dog.age} years old`);
+      console.log(`${dog.name} is ${dog.age * 7} dog years old`);
+      console.groupEnd(`${dog.name}`);
+      group = 'groupCollapsed';
+    });
 
     // counting
+    console.count('Wes');
+    console.count('Wes');
+    console.count('Steve');
+    console.count('Wes');
+    console.count('Steve');
+    console.count('Wes');
 
     // timing
+    console.time('fetching data');
+    fetch('https://api.github.com/users/nikhilmetrani')
+      .then(data => data.json())
+      .then(data => {
+        console.timeEnd('fetching data');
+        console.log(data);
+      });
+
+    console.table(dogs);
 
   </script>
 </body>
