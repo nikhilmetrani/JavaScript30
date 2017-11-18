@@ -100,22 +100,12 @@
 
 <script>
   const checkboxes = document.querySelectorAll('input');
-  let shiftPressed = false;
   let lastChecked = -1;
-  document.addEventListener('keydown', (e) => {
-    if (e.keyCode === 16) {
-      shiftPressed = true;
-    }
-  });
-  document.addEventListener('keyup', (e) => {
-    if (e.keyCode === 16) {
-      shiftPressed = false;
-    }
-  });
   checkboxes.forEach((checkbox, index) => {
     checkbox.addEventListener('click', (e) => {
-      if (shiftPressed) {
+      if (e.shiftKey) {
         if (lastChecked !== -1 &&
+          checkbox.checked &&
           lastChecked !== index) {
             const [start, end] = lastChecked < index ? [lastChecked, index] : [index, lastChecked];
             for (i = start; i <= end; i++) {
