@@ -183,13 +183,21 @@
   </ul>
 <script>
   const timeNodes = [...document.querySelectorAll('[data-time]')];
+  // Using Map and Reduce
+  // const seconds = timeNodes
+  //   .map(node => node.dataset.time)
+  //   .map(timeCode => {
+  //     const [mins, secs] = timeCode.split(':').map(parseFloat);
+  //     return (mins * 60) + secs;
+  //   })
+  //   .reduce((total, secs) => total + secs);
+  
+  // Using Reduce Only
   const seconds = timeNodes
-    .map(node => node.dataset.time)
-    .map(timeCode => {
-      const [mins, secs] = timeCode.split(':').map(parseFloat);
-      return (mins * 60) + secs;
-    })
-    .reduce((total, secs) => total + secs);
+    .reduce((total, node) => {
+      const [mins, secs] = node.dataset.time.split(':').map(parseFloat);
+      return total + (mins * 60) + secs;
+    }, 0);
   
   let secondsLeft = seconds;
   const hours = Math.floor(secondsLeft / 3600);
